@@ -109,11 +109,14 @@ async function getJsAPITicket() {
 }
 
 function fullUrl(req) {
-    return url.format({
-        protocol: req.protocol,
-        host: req.get('host'),
-        pathname: req.originalUrl
-    })
+    // return url.format({
+    //     protocol: req.protocol,
+    //     host: req.get('host'),
+    //     pathname: req.originalUrl
+    // })
+
+    // 开启 https 和 nginx 代理之后, 无法获取真实的协议
+    return `https://${req.get('host') + req.originalUrl}`
 }
 
 /**
