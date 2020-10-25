@@ -11,12 +11,13 @@ app.get('/', (req, res) => {
     res.send('hello world')
 })
 
+app.use('/api/v1/wechats', require('./api/v1/wechats'))
+
+app.post('/pay/notify_wx', wx)
+
 app.listen(3003, () => {
     console.log('server is running on 3003');
 })
-
-
-app.use('/api/v1/wechats', require('./api/v1/wechats'))
 
 mongoose
     .connect('mongodb://localhost:27017/cat-shop', {
